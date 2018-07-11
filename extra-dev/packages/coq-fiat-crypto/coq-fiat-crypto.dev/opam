@@ -3,6 +3,7 @@ authors: [
   "Andres Erbsen <andreser@mit.edu>"
   "Google Inc."
   "Jade Philipoom <jadep@mit.edu> <jade.philipoom@gmail.com>"
+  "Jason Gross <jgross@mit.edu> <jasongross9@gmail.com>"
   "Massachusetts Institute of Technology"
 ]
 maintainer: "Matej Košík <matej.kosik@inria.fr>"
@@ -11,12 +12,12 @@ bug-reports: "https://github.com/mit-plv/fiat-crypto/issues"
 license: "MIT"
 build: [
   ["git" "submodule" "update" "--init" "--recursive"]
-  [make "-j%{jobs}%" "coq" "selected-specific-display" "coqprime-all"]
+  [make "-j%{jobs}%" "coq" "selected-specific-display" "EXTERNAL_DEPENDENCIES=1"]
 ]
-install: [make "install"]
+install: [make "install" "EXTERNAL_DEPENDENCIES=1"]
 remove: ["rm" "-r" "-f" "%{lib}%/coq/user-contrib/Crypto"]
 depends: [
   "coq" {= "dev"}
-  "coq-bignums"
+  "coq-coqprime"
 ]
 dev-repo: "https://github.com/mit-plv/fiat-crypto.git"
